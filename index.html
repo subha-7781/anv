@@ -8,13 +8,10 @@
         body {
             background-color: #f0e6f6;
             font-family: 'Arial', sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
             margin: 0;
-            overflow: hidden;
             position: relative;
+            min-height: 100vh;
+            overflow-x: hidden;
         }
 
         .container {
@@ -23,9 +20,9 @@
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            z-index: 1;
             animation: backgroundChange 5s infinite alternate;
             max-width: 90%;
+            margin: 20px auto; /* Centered and with margin for scrolling */
         }
 
         @keyframes backgroundChange {
@@ -68,6 +65,8 @@
             flex-wrap: wrap;
             justify-content: center;
             z-index: 1;
+            overflow-y: auto; /* Enable vertical scrolling */
+            max-height: 60vh; /* Limit height for better mobile view */
         }
 
         .gallery img {
@@ -78,7 +77,7 @@
             border-radius: 10px;
             border: 5px solid transparent;
             transition: transform 0.3s ease, border-color 0.3s ease;
-            animation: revealImage 0.5s ease-out forwards; /* Initial reveal animation */
+            animation: revealImage 0.5s ease-out forwards;
         }
 
         @keyframes revealImage {
@@ -93,9 +92,9 @@
         }
 
         .gallery img:hover {
-            transform: scale(1.2) rotate(5deg); /* Hover effect with zoom and rotate */
+            transform: scale(1.2) rotate(5deg);
             border-color: #8b0000;
-            animation: pulse 1.5s infinite; /* Pulse animation on hover */
+            animation: pulse 1.5s infinite;
         }
 
         @keyframes pulse {
@@ -107,17 +106,6 @@
             }
             100% {
                 transform: scale(1.2) rotate(5deg);
-            }
-        }
-
-        @keyframes rollIn {
-            from {
-                transform: translateX(-100%);
-                opacity: 0;
-            }
-            to {
-                transform: translateX(0);
-                opacity: 1;
             }
         }
 
