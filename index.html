@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Love Anniversary</title>
+    <style>
+        body {
+            background-color: #f0e6f6;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .container {
+            text-align: center;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            z-index: 1; /* Lower z-index */
+            animation: backgroundChange 5s infinite alternate;
+        }
+
+        @keyframes backgroundChange {
+            0% { background-color: #fff; }
+            50% { background-color: #ffb3b3; }
+            100% { background-color: #ff6699; }
+        }
+
+        h1 {
+            color: #8b0000;
+            font-size: 2.5em;
+        }
+
+        p {
+            color: #4b0082;
+            font-size: 1.2em;
+        }
+
+        button {
+            background-color: #8b0000;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #4b0082;
+        }
+
+        .gallery {
+            display: none;
+            margin-top: 20px;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+            z-index: 1; /* Lower z-index */
+        }
+
+        .gallery img {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            border: 5px solid transparent;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.1);
+            border-color: #8b0000;
+        }
+
+        @keyframes rollIn {
+            from {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .rolling-animation {
+            display: flex;
+            animation: rollIn 1s ease-out;
+        }
+
+        .petal, .petal2 {
+            position: absolute;
+            width: 80px;
+            height: 60px;
+            opacity: 0.8;
+            animation: fall linear infinite;
+            z-index: 10; /* Higher z-index to ensure petals appear above other elements */
+        }
+
+        .petal {
+            background: url('flower.png') no-repeat center/contain;
+        }
+
+        .petal2 {
+            background: url('flower-png-exotic-pink-flower-png-clipart-picture-1414.png') no-repeat center/contain;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Happy 3rd Anniversary!</h1>
+        <p>Celebrating our love and the beautiful moments we’ve shared.</p>
+        <button id="revealPhotos">Show Our Memories</button>
+        <div class="gallery" id="gallery">
+            <img src="IMG_20230126_141119 - Copy.jpg">
+            <img src="IMG_20240214_183258.jpg">
+            <img src="IMG-20231204-WA0024.jpg">
+            <img src="IMG-20240214-WA0039.jpg">
+            <img src="IMG-20240214-WA0071.jpg">
+            <img src="IMG20240406151347.jpg">
+        </div>
+    </div>
+    <script>
+        document.getElementById('revealPhotos').addEventListener('click', function() {
+            const gallery = document.getElementById('gallery');
+            if (gallery.style.display === 'flex') {
+                gallery.style.display = 'none';
+                gallery.classList.remove('rolling-animation');
+            } else {
+                gallery.style.display = 'flex';
+                gallery.classList.add('rolling-animation');
+            }
+        });
+
+        function createPetal() {
+            const petal = document.createElement('div');
+            petal.classList.add(Math.random() > 0.5 ? 'petal' : 'petal2');
+            petal.style.left = Math.random() * 100 + 'vw';
+            petal.style.animationDuration = Math.random() * 2 + 3 + 's';
+            petal.style.opacity = Math.random() * 0.5 + 0.5;
+            document.body.appendChild(petal);
+            setTimeout(() => {
+                petal.remove();
+            }, 5000);
+        }
+
+        setInterval(createPetal, 300);
+    </script>
+</body>
+</html>
